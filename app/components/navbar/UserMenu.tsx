@@ -7,6 +7,7 @@ import MenuItem from "./MenuItem";
 import Avatar from "../Avatar";
 import useRegisterModal from "@/app/hooks/useRegisterModal";
 import useLoginModal from "@/app/hooks/useLoginModal";
+import { signOut } from "next-auth/react";
 
 interface UserMenuProps {
   currentUser?: SafeUser | null
@@ -111,7 +112,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
                 <hr />
                 <MenuItem 
                   label="Logout" 
-                  onClick={() => {}}
+                  onClick={() => signOut()}
                 />
               </>
             ) : (
