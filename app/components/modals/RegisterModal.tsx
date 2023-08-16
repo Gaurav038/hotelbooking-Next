@@ -18,10 +18,12 @@ import Input from "../inputs/Input";
 import Heading from "../Heading";
 import Button from "../Button";
 import { toast } from "react-hot-toast";
+import { signIn } from "next-auth/react";
+import useLoginModal from "@/app/hooks/useLoginModal";
 
 const RegisterModal= () => {
     const registerModal = useRegisterModal();
-
+    const loginModal = useLoginModal();
   const [isLoading, setIsLoading] = useState(false);
 
   const { 
@@ -39,6 +41,10 @@ const RegisterModal= () => {
   });
 
 
+  const onToggle = useCallback(() => {
+    registerModal.onClose();
+    loginModal.onOpen();
+  }, [registerModal, loginModal])
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
@@ -103,13 +109,13 @@ const RegisterModal= () => {
         outline 
         label="Continue with Google"
         icon={FcGoogle}
-        onClick={() => {}} 
+        onClick={() => signIn('google')} 
       />
       <Button 
         outline 
         label="Continue with Github"
         icon={AiFillGithub}
-        onClick={() => {}}
+        onClick={() =>  signIn('github')}
       />
       <div 
         className="
@@ -121,7 +127,7 @@ const RegisterModal= () => {
       >
         <p>Already have an account?
           <span 
-            // onClick={onToggle} 
+            onClick={onToggle} 
             className="
               text-neutral-800
               cursor-pointer 
