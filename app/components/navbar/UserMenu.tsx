@@ -8,6 +8,7 @@ import Avatar from "../Avatar";
 import useRegisterModal from "@/app/hooks/useRegisterModal";
 import useLoginModal from "@/app/hooks/useLoginModal";
 import { signOut } from "next-auth/react";
+import useRentModal from "@/app/hooks/useRentModal";
 
 interface UserMenuProps {
   currentUser?: SafeUser | null
@@ -21,7 +22,9 @@ const UserMenu: React.FC<UserMenuProps> = ({
   const router = useRouter();
   const registerModal = useRegisterModal();
   const loginModal = useLoginModal();
+  const rentModal = useRentModal()
   const [isOpen, setIsOpen] = useState(false);
+
 
   const toggleOpen = useCallback(() => {
     setIsOpen((value) => !value);
@@ -107,7 +110,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
                 />
                 <MenuItem 
                   label="Airbnb your home" 
-                  onClick={() => {}}
+                  onClick={rentModal.onOpen}
                 />
                 <hr />
                 <MenuItem 
