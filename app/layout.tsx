@@ -1,5 +1,6 @@
 
 import getCurrentUser from "./actions/getCurrentUser";
+import ClientOnly from "./components/ClientOnly";
 import LoginModal from "./components/modals/LoginModal";
 import RegisterModal from "./components/modals/RegisterModal";
 import RentModal from "./components/modals/RentModal";
@@ -25,10 +26,13 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={font.className}>
+      <ClientOnly>
         <Navbar currentUser={currentUser}/>
         <LoginModal />
         <RegisterModal />
         <RentModal />
+      </ClientOnly>
+
         <div className="pb-20 pt-28">
           {children}
         </div>
