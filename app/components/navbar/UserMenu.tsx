@@ -34,7 +34,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
     <div className="relative">
       <div className="flex flex-row items-center gap-3">
         <div
-          onClick={() => {}}
+          onClick={() => {rentModal.onOpen}}
           className="
             hidden
             md:block
